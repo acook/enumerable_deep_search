@@ -1,58 +1,62 @@
-require_relative "enumerable_deep_search/version"
+require_relative 'enumerable_deep_search/version'
 
 module EnumerableDeepSearch
   def search item
     research self, item
   end
 
+  def out *args
+    puts "-- #{args.join(' ')}"
+  end
+
   def research object, item
     if simple_research object, item then
-      puts '--# simple objects match'
+      out '# simple objects match'
       object
     elsif object.respond_to? :keys then
-      puts '-- keys'
+      out 'keys'
       hash_research object, item
     elsif object.respond_to? :each then
-      puts '-- each'
+      out 'each'
       array_research object, item
     elsif object.respond_to? :to_hash then
-      puts '-- convert to hash'
+      out 'convert to hash'
       research object.to_hash, item
     elsif object.respond_to? :to_a then
-      puts '-- convert to array'
+      out 'convert to array'
       research object.to_a, item
     else
-      puts "-- other: #{object.class}"
+      out 'other:', object.class
       other_research object, item
     end
   end
 
   def hash_research object, item
-    puts '-- hash'
+    out 'hash'
 
     match = nil
     object.find do |key, value|
       match = research key, item
       if match then
-        puts "--# match found: hash key #{key}"
+        out '# match found (hash key):', key
         match = {match => value}
       else
-        puts "-- no match for hash key #{key}"
+        out 'no match (hash key):', key
         match = research value, item
         match = {key => match} if match
       end
     end
 
     if match then
-      puts "--# match: #{match}"
+      out '# match:', match
     else
-      puts '-- no match'
+      out 'no match'
     end
     match
   end
 
   def array_research object, item
-    puts '-- array'
+    out 'array'
     match = nil
     object.each_with_index do |element, index|
       match = research(element, item)
@@ -62,35 +66,35 @@ module EnumerableDeepSearch
     end
 
     if match then
-      puts "--# match found: #{match}"
+      out '# match found:', match
     else
-      puts '-- no match'
+      out 'no match'
     end
     match
   end
 
   def simple_research object, item
     if object == item then
-      puts '--# objects match'
+      out '# objects match'
       object
     elsif object.to_s == item.to_s then
-      puts '--# object strings match'
+      out '# object strings match'
       object
     end
   end
 
   def other_research object, item
     if simple_research object, item then
-      puts '--# simple match found'
+      out '# simple match found'
       object
     elsif item.is_a?(Regexp) && object.to_s =~ item then
-      puts '--# regex match found'
+      out '# regex match found'
       object
     elsif object.to_s =~ /#{item.to_s}/ then
-      puts '--# substring match found'
+      out '# substring match found'
       object
     else
-      puts "-- no match (#{object.class}): #{object.to_s[0..80]}"
+      out 'no match:', object.class
     end
   end
 end
