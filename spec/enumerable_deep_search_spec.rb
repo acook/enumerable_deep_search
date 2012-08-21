@@ -33,5 +33,11 @@ describe EnumerableDeepSearch do
       result = eds.research hash, 'bar'
       result.should == hash
     end
+
+    it 'should match values in an array' do
+      array = [:foo]
+      result = eds.research array, :foo
+      result.should == [0, :foo]
+    end
   end
 end

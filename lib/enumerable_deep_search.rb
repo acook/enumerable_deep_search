@@ -54,12 +54,10 @@ module EnumerableDeepSearch
   def array_research object, item
     puts '-- array'
     match = nil
-    object.find do |element|
-      if element == item then
-        puts '--# element match found'
-        match = element
-      elsif match = research(element, item) then
-        puts '--# element research found'
+    object.each_with_index do |element, index|
+      match = research(element, item)
+      if match then
+        match = [index, match]
       end
     end
 
