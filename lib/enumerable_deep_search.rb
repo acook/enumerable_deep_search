@@ -1,4 +1,4 @@
-require "enumerable_deep_search/version"
+require_relative "enumerable_deep_search/version"
 
 module EnumerableDeepSearch
   def search item
@@ -29,15 +29,16 @@ module EnumerableDeepSearch
 
   def hash_research object, item
     puts '-- hash'
+
     match = nil
-    if object.keys.include? item then
-      puts '--# has key'
-      match = {item => object[item]}
-    else
-      puts '-- not key'
-      object.find do |key, value|
+    object.find do |key, value|
+      match = research key, item
+      if match then
+        puts "--# match found: hash key #{key}"
+        match = {key => match}
+      else
+        puts "-- no match for hash key #{key}"
         match = research value, item
-        break if match
       end
     end
 
@@ -74,16 +75,14 @@ module EnumerableDeepSearch
       puts '--# objects match'
       object
     elsif object.to_s == item.to_s then
-      puts '--# objects strings match'
+      puts '--# object strings match'
       object
-    else
-      puts '-- no match (simple)'
     end
   end
 
   def other_research object, item
-    if object.to_s == item.to_s then
-      puts '--# string match found'
+    if simple_research object, item then
+      puts '--# simple match found'
       object
     elsif item.is_a?(Regexp) && object.to_s =~ item then
       puts '--# regex match found'
@@ -92,7 +91,7 @@ module EnumerableDeepSearch
       puts '--# substring match found'
       object
     else
-      puts "-- no match (#{object.class})"
+      puts "-- no match (#{object.class}): #{object.to_s[0..80]}"
     end
   end
 end
