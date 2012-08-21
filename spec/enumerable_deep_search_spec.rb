@@ -16,52 +16,70 @@ describe EnumerableDeepSearch do
   end
 
   describe '#research' do
-    it 'should match identical objects' do
-      object = Object.new
-      result = eds.research object, object
-      result.should == object
+    context 'simple object matching' do
+      it 'should match identical objects' do
+        object = Object.new
+        result = eds.research object, object
+        result.should == object
+      end
+
+      it 'should match keys in a hash' do
+        hash = {'match' => 'bar'}
+        result = eds.research hash, 'match'
+        result.should == hash
+      end
+
+      it 'should match values in a hash' do
+        hash = {foo: 'match'}
+        result = eds.research hash, 'match'
+        result.should == hash
+      end
+
+      it 'should match values in an array' do
+        array = ['match']
+        result = eds.research array, 'match'
+        result.should == [0, 'match']
+      end
     end
 
-    it 'should match keys in a hash' do
-      hash = {foo: 'bar'}
-      result = eds.research hash, :foo
-      result.should == hash
+    context 'nested structures' do
+      it 'should match values in nested hashes' do
+        hash = {foo: {bar: 'match'}}
+        result = eds.research hash, 'match'
+        result.should == hash
+      end
+
+      it 'should match keys in nested hashes' do
+        hash = {foo: {'match' => 1}}
+        result = eds.research hash, 'match'
+        result.should == hash
+      end
+
+      it 'should match elements in nested array' do
+        array = [:foo, [:bar, 'match']]
+        result = eds.research array, 'match'
+        result.should == [1, [1, 'match']]
+      end
+
+      it 'should match objects in mixed hashes and arrays' do
+        struture = [:foo, {bar: [1,2,3,{baz: 'match'}]}]
+        result = eds.research struture, 'match'
+        result.should == [1, {:bar=>[3, {:baz=>"match"}]}]
+      end
     end
 
-    it 'should match values in a hash' do
-      hash = {foo: 'bar'}
-      result = eds.research hash, 'bar'
-      result.should == hash
-    end
+    context 'matching enumerable objects' do
+      it 'should match full arrays' do
+        array = [1]
+        result = eds.research array, array
+        result.should == array
+      end
 
-    it 'should match values in an array' do
-      array = [:foo]
-      result = eds.research array, :foo
-      result.should == [0, :foo]
-    end
-
-    it 'should match values in nested hashes' do
-      hash = {foo: {bar: 1}}
-      result = eds.research hash, 1
-      result.should == hash
-    end
-
-    it 'should match keys in nested hashes' do
-      hash = {foo: {bar: 1}}
-      result = eds.research hash, :bar
-      result.should == hash
-    end
-
-    it 'should match elements in nested array' do
-      array = [:foo, [:bar, 1]]
-      result = eds.research array, 1
-      result.should == [1, [1, 1]]
-    end
-
-    it 'should match objects in mixed hashes and arrays' do
-      struture = [:foo, {bar: [1,2,3,{baz: 'match'}]}]
-      result = eds.research struture, 'match'
-      result.should == [1, {:bar=>[3, {:baz=>"match"}]}]
+      it 'should match full hashes' do
+        hash = {a: 1}
+        result = eds.research hash, hash
+        result.should == hash
+      end
     end
   end
 end
