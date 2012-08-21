@@ -39,5 +39,29 @@ describe EnumerableDeepSearch do
       result = eds.research array, :foo
       result.should == [0, :foo]
     end
+
+    it 'should match values in nested hashes' do
+      hash = {foo: {bar: 1}}
+      result = eds.research hash, 1
+      result.should == hash
+    end
+
+    it 'should match keys in nested hashes' do
+      hash = {foo: {bar: 1}}
+      result = eds.research hash, :bar
+      result.should == hash
+    end
+
+    it 'should match elements in nested array' do
+      array = [:foo, [:bar, 1]]
+      result = eds.research array, 1
+      result.should == [1, [1, 1]]
+    end
+
+    it 'should match objects in mixed hashes and arrays' do
+      struture = [:foo, {bar: [1,2,3,{baz: 'match'}]}]
+      result = eds.research struture, 'match'
+      result.should == [1, {:bar=>[3, {:baz=>"match"}]}]
+    end
   end
 end
