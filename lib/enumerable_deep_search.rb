@@ -6,7 +6,7 @@ module EnumerableDeepSearch
   end
 
   def out *args
-    puts "-- #{args.join(' ')}"
+    puts "-- #{args.join(' ')}" if $VERBOSE || $DEBUG
   end
 
   def research object, item
