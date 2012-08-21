@@ -7,7 +7,7 @@ module EnumerableDeepSearch
 
   def research object, item
     if simple_research object, item then
-      puts '--# objects match'
+      puts '--# simple objects match'
       object
     elsif object.respond_to? :keys then
       puts '-- keys'
@@ -35,10 +35,11 @@ module EnumerableDeepSearch
       match = research key, item
       if match then
         puts "--# match found: hash key #{key}"
-        match = {key => match}
+        match = {match => value}
       else
         puts "-- no match for hash key #{key}"
         match = research value, item
+        match = {key => match} if match
       end
     end
 
