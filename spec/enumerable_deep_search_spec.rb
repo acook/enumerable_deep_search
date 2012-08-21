@@ -15,6 +15,13 @@ describe EnumerableDeepSearch do
     dummy.should respond_to(:search)
   end
 
+  describe '#search' do
+    it 'should proxy to research' do
+      eds.should_receive(:research)
+      eds.search :foo
+    end
+  end
+
   describe '#research' do
     context 'simple object matching' do
       it 'should match identical objects' do
