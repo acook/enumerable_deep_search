@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = EnumerableDeepSearch::VERSION
   gem.authors       = ["Anthony Cook"]
   gem.email         = ["anthonymichaelcook@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Recursively searches enumerable objects and their nested objects for a given object or string.}
+  gem.summary       = %q{Recursively searches through enumerable objects.}
+  gem.homepage      = "https://github.com/acook/enumerable_deep_search"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
