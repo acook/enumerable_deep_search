@@ -37,6 +37,12 @@ object.search 'something'
 #=> {:foo => [1, 'something']}
 ```
 
+## Ideas? Complaints?
+
+- You could Contribute: https://github.com/acook/enumerable_deep_search/fork
+- Or you could Submit an issue: https://github.com/acook/enumerable_deep_search/issues
+- Or you could even ping me on Twitter: http://twitter.com/anthony_m_cook
+
 ## Contributing
 
 1. Fork it
