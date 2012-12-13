@@ -3,7 +3,6 @@ $: << File.join($:.last, '..', 'lib')
 
 require 'bundler'
 Bundler.require :test
-require 'pry'
 
 def run *args
   output = Struct.new :pid, :stdout, :stderr
