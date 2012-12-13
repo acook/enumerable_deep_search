@@ -6,4 +6,10 @@ rvm:
   - rbx-19mode
   - ruby-head
   - ree
-script: bundle exec rspec spec --profile -f d -c --without development
+script: bundle exec rspec spec --profile -f d -c
+before_install:
+  - gem update bundler
+install:
+  - bundle install --without development
+before_script:
+  - bundle exec gem list
