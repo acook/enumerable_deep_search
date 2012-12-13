@@ -6,4 +6,4 @@ rvm:
   - rbx-19mode
   - ruby-head
   - ree
-script: bundle exec rspec spec --profile -f d -c
+script: bundle exec rspec spec --profile -f d -c --without development
