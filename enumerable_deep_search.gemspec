@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["anthonymichaelcook@gmail.com"]
   gem.description   = %q{Recursively search enumerable objects for a given object or string.}
   gem.summary       = %q{Deep search for enumerable objects.}
-  gem.homepage      = "https://github.com/acook/enumerable_deep_search"
+  gem.homepage      = "https://github.com/acook/enumerable_deep_search#readme"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
