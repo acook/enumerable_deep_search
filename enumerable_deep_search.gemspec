@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = EnumerableDeepSearch::VERSION
   gem.authors       = ["Anthony Cook"]
   gem.email         = ["anthonymichaelcook@gmail.com"]
-  gem.description   = %q{Recursively searches enumerable objects and their nested objects for a given object or string.}
-  gem.summary       = %q{Recursively searches through enumerable objects.}
+  gem.description   = %q{Recursively search enumerable objects for a given object or string.}
+  gem.summary       = %q{Deep search for enumerable objects.}
   gem.homepage      = "https://github.com/acook/enumerable_deep_search"
 
   gem.files         = `git ls-files`.split($/)
@@ -17,9 +17,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  %w{
-    rspec guard-rspec pry pry-nav pry-doc pry-theme pry-coolline pry-highlight pry-buffers
-  }.each do |g|
-    gem.add_development_dependency g
-  end
+  gem.add_development_dependency 'rspec'
 end
