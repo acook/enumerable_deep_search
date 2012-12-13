@@ -2,7 +2,8 @@
 
 Recursively searches enumerable objects and their nested objects for a given object or string.
 
-[![Build Status](https://travis-ci.org/acook/enumerable_deep_search.png?branch=master)](https://travis-ci.org/acook/enumerable_deep_search) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/acook/enumerable_deep_search)
+[![Build Status](https://travis-ci.org/acook/enumerable_deep_search.png?branch=master)](https://travis-ci.org/acook/enumerable_deep_search)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/acook/enumerable_deep_search)
 
 
 ## Installation
@@ -21,8 +22,11 @@ Or install it yourself as:
 
 ## Usage
 
-In practice it's an exploration tool, I recommend using it with pry and extending objects as needed.
-You can also include it on a class and use it the same way on instances.
+In practice it's an exploration tool, I recommend using it with [Pry](http://pryrepl.org) and extending objects as needed.
+You can also include it on a class and all the instances will inherit the functionality.
+
+Its useful any large nested data, such as configuration structures drumped from YAML files.
+Personally I've found this the most useful for searching web apis converted from XML and JSON into Ruby objects. 
 
 example:
 
