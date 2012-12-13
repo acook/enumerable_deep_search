@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   %w{
-    rspec guard-rspec pry pry-nav pry-doc pry-theme pry-coolline pry-highlight pry-buffers
+    rspec guard-rspec pry pry-nav pry-doc pry-theme pry-coolline pry-highlight pry-buffers rake
   }.each do |g|
     gem.add_development_dependency g
   end
