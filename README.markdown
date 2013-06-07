@@ -25,8 +25,8 @@ Or install it yourself as:
 In practice it's an exploration tool, I recommend using it with [Pry](http://pryrepl.org) and extending objects as needed.
 You can also include it on a class and all the instances will inherit the functionality.
 
-Its useful any large nested data, such as configuration structures drumped from YAML files.
 Personally I've found this the most useful for searching web apis converted from XML and JSON into Ruby objects. 
+Its useful on any large nested data, such as configuration structures dumped from YAML files.
 
 example:
 
