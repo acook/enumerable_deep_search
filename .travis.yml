@@ -1,11 +1,20 @@
 language: ruby
 rvm:
+  - 2.2.3
+  - 2.0.0
   - 1.9.3
   - 1.9.2
-  - rbx-19mode
+
+  - jruby-21mode
   - ruby-head
-script: bundle exec rspec spec --profile -f d -c
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-21mode
+
 before_install:
   - gem update bundler
 before_script:
   - bundle exec gem list
+script: bundle exec rspec spec --profile -f d -c
