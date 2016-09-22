@@ -35,7 +35,7 @@ object.extend EnumerableDeepSearch
 object.search 'something'
 ```
 
-It will return a facimile of the path to the matching object, for hash-like objects it will return a Hash containg the match as well as the opposite pair (either the key or the value), for array-like objects it will return a two element Array where the first element is the index of the match and second element the match itself.
+It will return a facimile of the path to the matching object, for hash-like objects it will return a Hash containing the match as well as the opposite pair (either the key or the value), for array-like objects it will return a two element Array where the first element is the index of the match and second element the match itself.
 
 example:
 
