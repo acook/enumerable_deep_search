@@ -2,8 +2,8 @@
 
 Recursively searches enumerable objects and their nested objects for a given object or string.
 
-[![Build Status](https://travis-ci.org/acook/enumerable_deep_search.png?branch=master)](https://travis-ci.org/acook/enumerable_deep_search)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/acook/enumerable_deep_search)
+[![Build Status](https://travis-ci.org/acook/enumerable_deep_search.svg?branch=master)](https://travis-ci.org/acook/enumerable_deep_search)
+[![Code Climate](https://codeclimate.com/github/acook/enumerable_deep_search/badges/gpa.svg)](https://codeclimate.com/github/acook/enumerable_deep_search)
 
 
 ## Installation
